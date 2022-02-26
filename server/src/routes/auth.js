@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { body } = require('express-validator');
+const { signupUser, login, verify } = require('../controllers/auth');
 
 router.post(
   '/signup',
@@ -36,5 +37,11 @@ router.post(
   ],
   signupUser
 );
+
+router.post('/login', 
+  [body('email').isString(), body('password').isString()],
+login);
+
+router.get('/verify/:id', verify);
 
 module.exports = router;
