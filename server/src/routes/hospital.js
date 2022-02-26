@@ -4,6 +4,9 @@ const router = express.Router();
 
 const { resources } = require('../controllers/hospital');
 const { postSearchHospital } = require('../controllers/search');
+const {
+  request,
+} = require('../controllers/hospital');
 
 router.post(
   '/request',

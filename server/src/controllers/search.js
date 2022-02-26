@@ -7,7 +7,7 @@ exports.postSearchHospital = async (req, res, next) => {
 
   try {
     const coordinates = await geoCode(location);
-    console.log(coordinates)
+    console.log(coordinates);
     const hospitals = await Hospital.find({
       location: {
         $near: {
@@ -41,7 +41,7 @@ exports.postSearchHospital = async (req, res, next) => {
       hospitals: array,
     });
   } catch (error) {
-    console.log(error)
+    console.log(error);
     return next(error);
   }
 };
