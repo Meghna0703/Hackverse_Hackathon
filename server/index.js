@@ -1,10 +1,9 @@
 const cors = require('cors');
-const path = require('path');
 const express = require('express');
 
 const DB = require('./src/utils/DB');
 const apiRoutes = require('./src/api');
-//const auth = require('./src/middlewares/auth');
+
 const app = express();
 const PORT = process.env.PORT || 5000;
 
@@ -17,12 +16,6 @@ app.get('/cors', (req, res) => {
   });
 });
 app.use(express.json());
-
-app.use('/adminass', express.static(path.join(__dirname, 'src', 'admin')));
-
-app.get('/admin', (req, res) => {
-  res.sendFile(path.join(__dirname, 'src', 'admin', 'index.html'));
-});
 
 app.use('/api/v1', apiRoutes);
 
