@@ -1,0 +1,105 @@
+.main {
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  padding-top: 90px;
+  padding-bottom: 90px;
+  flex-direction: column;
+  
+}
+.sub-main {
+  display: flex;
+  justify-content: center;
+  height: 450px;
+  width: 35%;
+  box-shadow: 11px 12px 13px 12px rgb(207, 207, 207);
+  padding-top: 30px;
+  border-radius: 60px;
+  background-color: white;
+}
+.imgs {
+  padding-top: 20px;
+  justify-content: center;
+  display: flex;
+}
+.container-image {
+ 
+  border-radius: 150px;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  height: 90px;
+  width: 90px;
+  margin-bottom: 20px;
+}
+.profile {
+  height: 70px;
+  width: 70px;
+  border-radius: 130px;
+}
+
+.loginInput {
+  width: 100%;
+  height: 50px;
+  border-radius: 60px;
+  box-shadow: inset 0px 0px 25px 0px #888;
+  border: none;
+  outline: none;
+  background-color: #fff;
+  font-size:12px;
+}
+
+.email {
+  height: 25px;
+  width: 25px;
+  position: absolute;
+  padding: 14px 0 0 25px;
+}
+
+.name {
+  padding-left: 50px;
+  font-size: 15px;
+}
+.second-input {
+  padding-top: 20px;
+}
+
+
+
+.login-button {
+  
+  border-radius: 60px;
+  background-color: #00A6A6;
+  color: white;
+ 
+  border: none;
+  padding: 10px;
+  border:none;
+  width:100%;
+  margin-top:20px;
+}
+
+
+.link {
+  font-size: 15px;
+  font-weight: 400;
+}
+.linkLogin {
+  color: orange;
+}
+
+body{
+  font-family: 'Poppins';
+}
+
+@media screen and (max-width:786px) {
+  .sub-main{
+    width:60%
+  }
+}
+@media screen and (max-width:400px) {
+  .sub-main{
+    width:90%
+  }
+}
