@@ -10,6 +10,7 @@ import DoctorRegistration from './components/DoctorRegistration';
 import UserSearch from './components/UserSearch';
 import Resources from './components/Resources';
 import LoginUi from './components/LoginUi';
+import Diabetes from './components/Diabetes';
 function App() {
   return (
     <BrowserRouter>
@@ -23,6 +24,7 @@ function App() {
        <Route path="/usersearch" element={<UserSearch />} /> 
        <Route path='/resources' element={<Resources/>}/>
        <Route path='login' element={<LoginUi/>}/>
+       <Route path="/diabetes" element={<Diabetes/>}/>
        
        
        
