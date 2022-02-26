@@ -9,7 +9,7 @@ const hospitalSchema = new mongoose.Schema({
   state: { type: String, required: true },
   password: { type: String, required: true },
   role: { type: String, default: 'HOSPITAL' },
-  approved: { type: Boolean, default: true }, // change default to false after adding auth and verification
+  approved: { type: Boolean, default: false },
   location: {
     type: {
       type: String,
