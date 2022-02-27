@@ -1,0 +1,15 @@
+.doctorList{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+.doctorInfo{
+    font-size:15px;
+    color:#F49F0A;
+    font-weight: 500;
+}
+.doctorLabel{
+    color:grey;
+    font-size: 14px;
+}
