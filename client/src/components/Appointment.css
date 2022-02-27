@@ -1,0 +1,18 @@
+.appform{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding-top: 50px;
+    
+}
+.dateTime{
+    background-color: #EAF2FF ;
+    border-radius: 10px;
+    box-shadow: 6px 0px 24px -4px rgba(0,0,0,0.64);
+    padding:20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
