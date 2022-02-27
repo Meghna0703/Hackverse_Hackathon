@@ -20,6 +20,9 @@ const {
   getRequests,
   approveRequest,
   disapproveRequest,
+  addAppointment,
+  getDoctors,
+  getAppointments,
 } = require('../controllers/doctor');
 
 router.post(
@@ -60,6 +63,10 @@ router.post('/approve', authMiddleware, approveRequest);
 
 router.post('/disapprove', authMiddleware, disapproveRequest);
 
-router.get('/get',)
+router.get('/get', getDoctors);
+
+router.post('/add', jwtAuth, addAppointment);
+
+router.get('/appointments', jwtAuth, getAppointments);
 
 module.exports = router;

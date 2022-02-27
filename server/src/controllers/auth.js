@@ -4,6 +4,8 @@ const jwt = require('jsonwebtoken');
 
 const User = require('./../models/user');
 const Hospital = require('./../models/hospital');
+const Doctor = require('./../models/doctor');
+
 const errorHelper = require('./../utils/error');
 const OTPGEN = require('./../utils/otp');
 const mailer = require('./../utils/mailer');
@@ -48,7 +50,9 @@ exports.login = async (req, res, next) => {
   try {
     const user = await User.findOne({ email }).select('+password');
     const hospital = await Hospital.findOne({ email }).select('+password');
-    if (!user && !hospital) {
+    const doctor = await Doctor.findOne({ email }).select('+password');
+    console.log(doctor)
+    if (!user && !hospital && !doctor) {
       return next(errorHelper('User with given email does not exist', 404, []));
     }
     if (user) {
@@ -80,6 +84,25 @@ exports.login = async (req, res, next) => {
           email: hospital.email,
           id: hospital._id,
           role: hospital.role,
+        },
+        'supersecretjwtsecretkey'
+      );
+      return res.status(200).json({
+        message: 'Login successful',
+        status: 200,
+        token,
+      });
+    }
+    if (doctor) {
+      const isMatch = await bcrypt.compare(password, doctor.password);
+      if (!isMatch) {
+        return next(errorHelper('Invalid Credentials', 403, []));
+      }
+      const token = jwt.sign(
+        {
+          email: doctor.email,
+          id: doctor._id,
+          role: doctor.role,
         },
         'supersecretjwtsecretkey'
       );

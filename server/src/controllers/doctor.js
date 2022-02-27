@@ -4,6 +4,7 @@ const { validationResult } = require('express-validator');
 const diseaseList = require('./diseases.json');
 
 const Doctor = require('./../models/doctor');
+const User= require('./../models/user')
 const errorHelper = require('./../utils/error');
 
 exports.request = async (req, res, next) => {
@@ -99,9 +100,9 @@ exports.disapproveRequest = async (req, res, next) => {
 };
 
 exports.getDoctors = async (req, res, next) => {
-  const { disease } = req.params.disease;
+  const { disease } = req.params;
   if (!disease) {
-    const doctors = await Doctor.find({ approved: true }).select('-password');
+    const doctors = await Doctor.find().select('-password');
     return res.json({
       doctors,
     });
@@ -111,7 +112,10 @@ exports.getDoctors = async (req, res, next) => {
     if (!obj) {
       return next('Disease not found', 404, []);
     }
-    const spec = obj.specialist;
+    let spec = obj.specialist;
+    if (!spec) {
+      spec = 'General Physician';
+    }
     const doctors = await Doctor.find({
       approved: true,
       speciality: spec,
@@ -122,4 +126,40 @@ exports.getDoctors = async (req, res, next) => {
   } catch (error) {
     return next('Disease not found', 404, []);
   }
+};
+
+exports.addAppointment = async (req, res, next) => {
+  const doctorID = req.body.id;
+  const { date, time } = req.body;
+  const doctor = await Doctor.findOne({ _id: doctorID });
+  console.log('hi',doctor,doctorID)
+  doctor.appointments.push({
+    date,
+    time,
+    user: req.user._id,
+  });
+  await doctor.save();
+  return res.json({
+    message: 'Appiintment added',
+  });
+};
+
+exports.getAppointments = async (req, res, next) => {
+  const appointments = req.user.appointments;
+  
+  const toSend = [];
+
+  for (let index = 0; index < appointments.length; index++) {
+    const element = appointments[index];
+    const user = await User.findOne({ _id: element.user }).select('name email');
+    toSend.push({ user, date: element });
+  }
+  
+  
+
+  return res.json({
+    message: 'appouintments',
+    appointments: toSend,
+    
+  });
 };
